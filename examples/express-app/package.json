@@ -1,0 +1,17 @@
+{
+  "name": "stellar-x402-paywall-kit-example-express",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "dotenv": "^16.4.5",
+    "stellar-x402-paywall-kit": "file:../..",
+    "@x402/core": "^2.20.0",
+    "@x402/express": "^2.20.0",
+    "@x402/stellar": "^2.20.0"
+  }
+}

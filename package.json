@@ -1,0 +1,50 @@
+{
+  "name": "stellar-x402-paywall-kit",
+  "version": "0.1.0",
+  "description": "One-line x402 paywall middleware for Express & Hono with a Stellar (OZ Channels) facilitator preset",
+  "type": "module",
+  "license": "MIT",
+  "author": "leocagli",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./express": "./src/express.js",
+    "./hono": "./src/hono.js"
+  },
+  "bin": {
+    "stellar-paywall-init": "./bin/init.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "stellar",
+    "x402",
+    "soroban",
+    "payments",
+    "middleware",
+    "agent-payments"
+  ],
+  "peerDependencies": {
+    "@x402/core": "^2.20.0",
+    "@x402/express": "^2.20.0",
+    "@x402/hono": "^2.20.0",
+    "@x402/stellar": "^2.20.0"
+  },
+  "peerDependenciesMeta": {
+    "@x402/express": { "optional": true },
+    "@x402/hono": { "optional": true }
+  },
+  "devDependencies": {
+    "@x402/core": "^2.20.0",
+    "@x402/express": "^2.20.0",
+    "@x402/hono": "^2.20.0",
+    "@x402/stellar": "^2.20.0"
+  }
+}

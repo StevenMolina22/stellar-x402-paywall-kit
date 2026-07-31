@@ -1,0 +1,18 @@
+{
+  "name": "stellar-x402-paywall-kit-example-hono",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "hono": "^4.6.0",
+    "@hono/node-server": "^1.13.0",
+    "dotenv": "^16.4.5",
+    "stellar-x402-paywall-kit": "file:../..",
+    "@x402/core": "^2.20.0",
+    "@x402/hono": "^2.20.0",
+    "@x402/stellar": "^2.20.0"
+  }
+}
