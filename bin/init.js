@@ -18,9 +18,9 @@ OZ_API_KEY=
 
 if (fs.existsSync(target)) {
   console.error(`${target} already exists, not overwriting.`);
-  process.exit(1);
+  process.exitCode = 1;
+} else {
+  fs.writeFileSync(target, contents);
+  console.log(`Wrote ${target}`);
+  console.log("Next: copy it to .env, fill in STELLAR_RECIPIENT and OZ_API_KEY, then use stellarPaywall() from stellar-x402-paywall-kit/express or /hono.");
 }
-
-fs.writeFileSync(target, contents);
-console.log(`Wrote ${target}`);
-console.log("Next: copy it to .env, fill in STELLAR_RECIPIENT and OZ_API_KEY, then use stellarPaywall() from stellar-x402-paywall-kit/express or /hono.");

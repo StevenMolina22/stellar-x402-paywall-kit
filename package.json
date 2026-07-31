@@ -38,13 +38,20 @@
     "@x402/stellar": "^2.20.0"
   },
   "peerDependenciesMeta": {
-    "@x402/express": { "optional": true },
-    "@x402/hono": { "optional": true }
+    "@x402/express": {
+      "optional": true
+    },
+    "@x402/hono": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "@x402/core": "^2.20.0",
-    "@x402/express": "^2.20.0",
-    "@x402/hono": "^2.20.0",
-    "@x402/stellar": "^2.20.0"
+    "@stellar/stellar-sdk": "^16.2.0",
+    "@x402/core": "2.20.0",
+    "@x402/express": "2.20.0",
+    "@x402/fetch": "2.20.0",
+    "@x402/hono": "2.20.0",
+    "@x402/stellar": "2.20.0",
+    "express": "^5.2.1"
   }
 }
