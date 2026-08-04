@@ -10,13 +10,18 @@ app.use(
   "*",
   stellarPaywall({
     "GET /weather": { price: "$0.001", description: "Current weather data" },
+    "GET /weather/premium": { price: "$0.01", description: "Weather + 7-day forecast" },
   })
 );
 
 app.get("/weather", (c) => c.json({ city: "Buenos Aires", temp: 21, conditions: "Clear" }));
+app.get("/weather/premium", (c) =>
+  c.json({ city: "Buenos Aires", temp: 21, conditions: "Clear", forecast: [22, 23, 19, 20, 24, 21, 18] })
+);
 
 const port = Number(process.env.PORT || 3002);
 serve({ fetch: app.fetch, port }, () => {
   console.log(`x402 Hono example on http://localhost:${port} (${process.env.STELLAR_NETWORK || "stellar:testnet"})`);
-  console.log(`Try: curl -i http://localhost:${port}/weather   (expect 402)`);
+  console.log(`Try: curl -i http://localhost:${port}/weather           (expect 402, $0.001)`);
+  console.log(`     curl -i http://localhost:${port}/weather/premium   (expect 402, $0.01)`);
 });
