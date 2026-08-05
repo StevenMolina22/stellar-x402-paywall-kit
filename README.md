@@ -4,6 +4,8 @@ One-line [x402](https://github.com/x402-foundation/x402) paywall middleware for 
 
 x402 already ships official Stellar adapters (`@x402/express`, `@x402/hono`, `@x402/stellar`) — this kit is the part nobody publishes: the one-line **Stellar-specific preset** (facilitator client, scheme registration, env validation with actionable errors) plus a shared route config that works identically across both frameworks.
 
+**Contents:** [Why](#why-this-exists) · [Install](#install) · [Quickstart](#quickstart) · [Proof of work](#proof-of-work) · [How it works](#how-the-402-flow-works) · [API](#api) · [Testnet runbook](#testnet-runbook) · [Mainnet](#mainnet) · [Security](#security-considerations) · [Troubleshooting](#troubleshooting)
+
 ## Why this exists
 
 Wiring x402 to Stellar by hand means: build an `HTTPFacilitatorClient` pointed at the right OZ Channels URL for your network, register `ExactStellarScheme`, build an `x402ResourceServer`, and only then call the framework middleware — about 15 lines of boilerplate per app, repeated per framework, with an opaque failure if you forget `OZ_API_KEY`. This kit collapses that to:
@@ -63,6 +65,18 @@ Pay it with [`stellar-agent-pay-cli`](https://github.com/leocagli/stellar-agent-
 ```bash
 stellar-agent-pay http://localhost:3001/weather
 ```
+
+## Proof of work
+
+This exact server, paid by the sibling CLI, on Stellar testnet — not mocked. Verify any of these on [Stellar Expert](https://stellar.expert/explorer/testnet):
+
+| tx hash | route | price |
+|---|---|---|
+| [`d8adef29...ee7e14fe`](https://stellar.expert/explorer/testnet/tx/d8adef2991af899cbf1009d06e8a428199f7b642ab65948c3fabbf70ee7e14fe) | `GET /weather` | $0.001 |
+| [`4b0524e7...cdab979b83`](https://stellar.expert/explorer/testnet/tx/4b0524e754703b99237558f94cc5b89e74e2e4ee3aa2d99d7b9527cdab979b83) | `GET /weather` | $0.001 |
+| [`3ee14d47...9fed611`](https://stellar.expert/explorer/testnet/tx/3ee14d47ee8ae5b3e4eb374ddb178f108d72e63c262244cce68a563fb9fed611) | `GET /weather/premium` (2nd tier, same server) | $0.01 |
+
+Plus `test/e2e.test.js` below, which runs this same flow live against the real facilitator on every `npm test` when credentials are present.
 
 ## How the 402 flow works
 
@@ -135,8 +149,10 @@ Only `.env` changes — no code changes:
 ## Testing
 
 ```bash
-npm test   # node --test — no network calls, no live facilitator needed
+npm test   # node --test — 10/10: 9 unit tests (no network) + 1 live e2e test (see Proof of work above)
 ```
+
+The e2e test needs `OZ_API_KEY` + `STELLAR_RECIPIENT` + `STELLAR_PAYER_SECRET`; it auto-skips without them, so `npm test` never breaks CI for anyone without a funded account.
 
 ## License
 
