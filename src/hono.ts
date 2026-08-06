@@ -1,10 +1,12 @@
 import { paymentMiddleware } from "@x402/hono";
 import { createStellarFacilitator } from "./facilitator.js";
+import type { StellarPaywallOptions } from "./facilitator.js";
 import { buildRoutesConfig } from "./routes.js";
+import type { PaywallRoute } from "./routes.js";
 
 /**
  * One-line x402 paywall for Hono, preset for Stellar via OZ Channels.
- * Same config shape as the Express preset — swap the import to gate a second app.
+ * Same config shape as the Express preset, so swap the import to gate a second app.
  *
  * @example
  * import { Hono } from "hono";
@@ -15,11 +17,11 @@ import { buildRoutesConfig } from "./routes.js";
  *   "GET /weather": { price: "$0.001" },
  * }));
  * app.get("/weather", (c) => c.json({ temp: 18 }));
- *
- * @param {Record<string, import("./routes.js").PaywallRoute>} routes
- * @param {import("./facilitator.js").StellarPaywallOptions} [opts]
  */
-export function stellarPaywall(routes, opts = {}) {
+export function stellarPaywall(
+  routes: Record<string, PaywallRoute>,
+  opts: StellarPaywallOptions = {}
+) {
   const { network, payTo, server } = createStellarFacilitator(opts);
   const routesConfig = buildRoutesConfig(routes, { network, payTo });
   return paymentMiddleware(routesConfig, server, opts.paywallConfig);

@@ -1,29 +1,31 @@
+import type { RouteConfig } from "@x402/core/server";
 import { StellarPaywallConfigError } from "./errors.js";
 
-/**
- * @typedef {Object} PaywallRoute
- * @property {string|{amount: string, asset: string}} price - e.g. "$0.001", or explicit base units for a non-USDC asset.
- * @property {string} [payTo] - Recipient G... address. Falls back to the preset's default (STELLAR_RECIPIENT).
- * @property {string} [description]
- */
+export type PaywallRoute = {
+  /** e.g. "$0.001", or explicit base units for a non-USDC asset. */
+  price: string | { amount: string; asset: string };
+  /** Recipient G... address. Falls back to the preset's default (STELLAR_RECIPIENT). */
+  payTo?: string;
+  description?: string;
+};
 
 /**
  * Turn the kit's simplified per-route shape into the `RoutesConfig` that
  * `@x402/core` expects (scheme + network + payTo attached to every route).
  *
- * @param {Record<string, PaywallRoute>} routes
- * @param {{ network: `${string}:${string}`, payTo?: string }} ctx - `network` is CAIP-2, which is
- *   the shape @x402/core's RouteConfig actually requires, not any old string.
- * @returns {Record<string, import("@x402/core/server").RouteConfig>}
+ * `ctx.network` is CAIP-2, which is the shape @x402/core's RouteConfig actually
+ * requires, not any old string.
  */
-export function buildRoutesConfig(routes, ctx) {
+export function buildRoutesConfig(
+  routes: Record<string, PaywallRoute>,
+  ctx: { network: `${string}:${string}`; payTo?: string }
+): Record<string, RouteConfig> {
   const entries = Object.entries(routes);
   if (entries.length === 0) {
     throw new StellarPaywallConfigError("stellarPaywall() needs at least one route, e.g. { \"GET /weather\": { price: \"$0.001\" } }.");
   }
 
-  /** @type {Record<string, import("@x402/core/server").RouteConfig>} */
-  const out = {};
+  const out: Record<string, RouteConfig> = {};
   for (const [pattern, route] of entries) {
     const payTo = route.payTo ?? ctx.payTo;
     if (!payTo) {
