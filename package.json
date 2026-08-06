@@ -4,6 +4,17 @@
   "description": "One-line x402 paywall middleware for Express & Hono with a Stellar (OZ Channels) facilitator preset",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StevenMolina22/stellar-x402-paywall-kit.git"
+  },
+  "homepage": "https://github.com/StevenMolina22/stellar-x402-paywall-kit#readme",
+  "bugs": {
+    "url": "https://github.com/StevenMolina22/stellar-x402-paywall-kit/issues"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "author": "leocagli",
   "main": "src/index.js",
   "exports": {
