@@ -21,6 +21,9 @@ export function defaultFacilitatorUrl(network) {
  * @property {string} [ozApiKey] - OZ Channels API key. Defaults to OZ_API_KEY env.
  * @property {string} [facilitatorUrl] - Override the facilitator URL. Defaults to the OZ Channels URL for `network`.
  * @property {string} [payTo] - Default recipient G... address for routes that don't set their own. Defaults to STELLAR_RECIPIENT env.
+ * @property {import("@x402/core/server").PaywallConfig} [paywallConfig] - Passed straight through to the
+ *   underlying paymentMiddleware, for branding the browser-facing paywall page. Both presets read it, and
+ *   the README documents it, but it was missing from this typedef until the type check went on.
  */
 
 /**
@@ -30,7 +33,7 @@ export function defaultFacilitatorUrl(network) {
  * once, with clear config-time errors instead of an opaque crash on the first request.
  *
  * @param {StellarPaywallOptions} [opts]
- * @returns {{ network: string, payTo: string | undefined, server: import("@x402/core/server").x402ResourceServer }}
+ * @returns {{ network: "stellar:testnet"|"stellar:pubnet", payTo: string | undefined, server: import("@x402/core/server").x402ResourceServer }}
  */
 export function createStellarFacilitator(opts = {}) {
   const network = opts.network ?? process.env.STELLAR_NETWORK ?? "stellar:testnet";

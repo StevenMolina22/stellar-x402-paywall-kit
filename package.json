@@ -32,7 +32,8 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "stellar",
@@ -58,11 +59,13 @@
   },
   "devDependencies": {
     "@stellar/stellar-sdk": "^16.2.0",
+    "@types/node": "^26.1.2",
     "@x402/core": "2.20.0",
     "@x402/express": "2.20.0",
     "@x402/fetch": "2.20.0",
     "@x402/hono": "2.20.0",
     "@x402/stellar": "2.20.0",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "typescript": "^7.0.2"
   }
 }

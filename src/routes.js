@@ -12,7 +12,9 @@ import { StellarPaywallConfigError } from "./errors.js";
  * `@x402/core` expects (scheme + network + payTo attached to every route).
  *
  * @param {Record<string, PaywallRoute>} routes
- * @param {{ network: string, payTo?: string }} ctx
+ * @param {{ network: `${string}:${string}`, payTo?: string }} ctx - `network` is CAIP-2, which is
+ *   the shape @x402/core's RouteConfig actually requires, not any old string.
+ * @returns {Record<string, import("@x402/core/server").RouteConfig>}
  */
 export function buildRoutesConfig(routes, ctx) {
   const entries = Object.entries(routes);
@@ -20,6 +22,7 @@ export function buildRoutesConfig(routes, ctx) {
     throw new StellarPaywallConfigError("stellarPaywall() needs at least one route, e.g. { \"GET /weather\": { price: \"$0.001\" } }.");
   }
 
+  /** @type {Record<string, import("@x402/core/server").RouteConfig>} */
   const out = {};
   for (const [pattern, route] of entries) {
     const payTo = route.payTo ?? ctx.payTo;
