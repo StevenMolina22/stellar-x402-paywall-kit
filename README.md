@@ -1,6 +1,6 @@
 # stellar-x402-paywall-kit
 
-One-line [x402](https://github.com/x402-foundation/x402) paywall middleware for **Express** and **Hono**, preset for the **Stellar** OZ Channels facilitator. Built for the GrantFox Stellar Builder Summit SP 2026 bounty — sub-lane 3A (Agentic Payments) and paired with [`stellar-agent-pay-cli`](https://github.com/leocagli/stellar-agent-pay-cli) (sub-lane 3B) for a full 402 → pay → unlock demo.
+One-line [x402](https://github.com/x402-foundation/x402) paywall middleware for **Express** and **Hono**, preset for the **Stellar** OZ Channels facilitator. Built for the GrantFox Stellar Builder Summit SP 2026 bounty — sub-lane 3A (Agentic Payments) and paired with [`stellar-agent-pay-cli`](https://github.com/StevenMolina22/stellar-agent-pay-cli) (sub-lane 3B) for a full 402 → pay → unlock demo.
 
 x402 already ships official Stellar adapters (`@x402/express`, `@x402/hono`, `@x402/stellar`) — this kit is the part nobody publishes: the one-line **Stellar-specific preset** (facilitator client, scheme registration, env validation with actionable errors) plus a shared route config that works identically across both frameworks.
 
@@ -60,7 +60,7 @@ curl -i http://localhost:3001/weather                  # -> 402 Payment Required
 curl -i http://localhost:3001/weather/premium           # -> 402 Payment Required, $0.01 (2nd tier, same server)
 ```
 
-Pay it with [`stellar-agent-pay-cli`](https://github.com/leocagli/stellar-agent-pay-cli):
+Pay it with [`stellar-agent-pay-cli`](https://github.com/StevenMolina22/stellar-agent-pay-cli):
 
 ```bash
 stellar-agent-pay http://localhost:3001/weather
