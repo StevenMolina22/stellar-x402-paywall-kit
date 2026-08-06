@@ -1,6 +1,14 @@
 // Live end-to-end test against the real OZ Channels testnet facilitator — not mocked.
 // Skipped automatically unless credentials are present, so it never breaks CI/`npm test`
 // for anyone without a funded testnet account; run it locally once you have one (see README).
+//
+// This builds its buyer by hand out of @x402/fetch on purpose. It is the *seller's* test:
+// it proves this middleware gates an unpaid request and unlocks a paid one, using the
+// thinnest possible client, and it keeps this kit free of any dependency on the CLI.
+// The mirror-image test (a real buyer paying a real paywall) lives in the sibling
+// stellar-agent-pay-cli, which is where the buyer code it exercises actually is.
+// Do not "simplify" this by importing that CLI: it would put a dependency cycle
+// between the two repos and leave the seller side untested on its own.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import express from "express";

@@ -22,6 +22,8 @@ npm install stellar-x402-paywall-kit @x402/core @x402/stellar @x402/express
 npm install stellar-x402-paywall-kit @x402/core @x402/stellar @x402/hono
 ```
 
+Express 4 and 5 both work (`@x402/express` declares `^4.0.0 || ^5.0.0`). The examples and the live test here run Express 5.
+
 ## Quickstart
 
 ```bash
