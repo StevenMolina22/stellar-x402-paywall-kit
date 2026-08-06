@@ -66,6 +66,16 @@ Pay it with [`stellar-agent-pay-cli`](https://github.com/leocagli/stellar-agent-
 stellar-agent-pay http://localhost:3001/weather
 ```
 
+### Or watch an agent shop: `examples/agent-catalog`
+
+`examples/express-app` proves the plumbing. [`examples/agent-catalog`](examples/agent-catalog)
+is the demo worth showing: a paywalled research catalog at three price tiers
+($0.001 index, $0.005 per report, $0.05 synthesis) driven by Claude Code through the
+CLI's MCP server on a $0.02 budget. The agent buys the index, decides which reports
+are worth $0.005, then gets refused on the synthesis when the cumulative cap runs
+out. A fourth route sells the same data cheaper from an unvetted recipient, and the
+operator's allow-list refuses it. See that example's README for the run.
+
 ## Proof of work
 
 This exact server, paid by the sibling CLI, on Stellar testnet — not mocked. Verify any of these on [Stellar Expert](https://stellar.expert/explorer/testnet):
