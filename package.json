@@ -8,7 +8,7 @@
     "type": "git",
     "url": "git+https://github.com/StevenMolina22/stellar-x402-paywall-kit.git"
   },
-  "homepage": "https://github.com/StevenMolina22/stellar-x402-paywall-kit#readme",
+  "homepage": "https://stellar-paywall-kit.vercel.app",
   "bugs": {
     "url": "https://github.com/StevenMolina22/stellar-x402-paywall-kit/issues"
   },

@@ -1,6 +1,6 @@
 # stellar-x402-paywall-kit
 
-[![npm](https://img.shields.io/npm/v/stellar-x402-paywall-kit.svg)](https://www.npmjs.com/package/stellar-x402-paywall-kit) [![license](https://img.shields.io/npm/l/stellar-x402-paywall-kit.svg)](LICENSE) [![node](https://img.shields.io/node/v/stellar-x402-paywall-kit.svg)](https://nodejs.org)
+[![npm](https://img.shields.io/npm/v/stellar-x402-paywall-kit.svg)](https://www.npmjs.com/package/stellar-x402-paywall-kit) [![license](https://img.shields.io/npm/l/stellar-x402-paywall-kit.svg)](LICENSE) [![node](https://img.shields.io/node/v/stellar-x402-paywall-kit.svg)](https://nodejs.org) [![site](https://img.shields.io/badge/site-stellar--paywall--kit.vercel.app-4F46E5)](https://stellar-paywall-kit.vercel.app)
 
 Charge for an API route in one line. [x402](https://github.com/x402-foundation/x402) paywall
 middleware for Express and Hono, preset for Stellar via the OpenZeppelin Channels facilitator.
