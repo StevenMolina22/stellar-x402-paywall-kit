@@ -23,7 +23,7 @@
     "./hono": "./src/hono.js"
   },
   "bin": {
-    "stellar-paywall-init": "./bin/init.js"
+    "stellar-paywall-init": "bin/init.js"
   },
   "files": [
     "src",
